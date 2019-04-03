@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_title_text">18sp</dimen>
+    <dimen name="font_normal_text">14sp</dimen>
+
+    <dimen name="height_titlebar">44dp</dimen>
+</resources>
