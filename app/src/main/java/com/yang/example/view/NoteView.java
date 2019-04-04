@@ -318,9 +318,20 @@ public class NoteView extends View {
         }
     }
 
+    @Override
+    public void computeScroll() {
+        super.computeScroll();
+    }
+
+    public void smoothScrollTo(int x, int y) {
+    }
+
+    public void smoothScrollBy(int x, int y) {
+        mViewFlinger.smoothScrollBy(x, y);
+    }
+
 
     private class ViewFlinger implements Runnable {
-
         private int mLastFlingY = 0;
         private OverScroller mScroller;
         private boolean mEatRunOnAnimationRequest = false;
@@ -328,6 +339,19 @@ public class NoteView extends View {
 
         public ViewFlinger() {
             mScroller = new OverScroller(getContext());
+        }
+
+        public OverScroller getScroller() {
+            return mScroller;
+        }
+
+        public void smoothScrollTo(int x, int y) {
+        }
+
+        public void smoothScrollBy(int x, int y) {
+            mLastFlingY = 0;
+            mScroller.startScroll(getScrollX(), getScrollY(), x, y);
+            postOnAnimation();
         }
 
         @Override
@@ -347,7 +371,8 @@ public class NoteView extends View {
         public void fling(int velocityY) {
             mLastFlingY = 0;
             setScrollState(SCROLL_STATE_SETTLING);
-            mScroller.fling(0, 0, 0, velocityY, Integer.MIN_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            mScroller.fling(0, 0, 0, velocityY, Integer.MIN_VALUE,
+                    Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE);
             postOnAnimation();
         }
 

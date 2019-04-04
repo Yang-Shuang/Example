@@ -35,12 +35,20 @@ public class CustomTextViewActivity extends SimpleBarActivity {
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        if (a) {
-            mNoteView.addText(NoteView.LIGHT_LEVEL, i + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈");
-        } else {
-            mNoteView.addText(i + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈");
+        switch (v.getId()) {
+            case R.id.custom_text_add_btn:
+                if (a) {
+                    mNoteView.addText(NoteView.LIGHT_LEVEL, i + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈");
+                } else {
+                    mNoteView.addText(i + "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈");
+                }
+                a = !a;
+                i++;
+                break;
+            case R.id.custom_text_scroll_btn:
+                mNoteView.smoothScrollBy(0, 400);
+                break;
         }
-        a = !a;
-        i++;
+
     }
 }
