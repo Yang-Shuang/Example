@@ -27,7 +27,6 @@ import java.util.List;
 
 public class NoteView extends View {
 
-    private static final String mSeparator = "_:::_";
     private int normalColor = Color.BLACK;
     private int warnColor = Color.YELLOW;
     private int lightColor = Color.RED;
@@ -41,12 +40,23 @@ public class NoteView extends View {
     private int contentWidth;
     private float lineHeight = 0;
 
-    private List<TextModel> contentList, showList;
-
-    private int[] mCursorLocation = new int[2];
-
+    private List<TextModel> contentList;
     private int mTouchSlop;
     private int mScrollWidth, mConetntHeight;
+    private int lastContentHeight;
+    private boolean currentScrollYEND = true;
+    private int mMinFlingVelocity, mMaxFlingVelocity;
+    private float touchY;
+    private final int SCROLL_STATE_IDLE = 0;
+    private final int SCROLL_STATE_DRAGGING = 1;
+    private final int SCROLL_STATE_SETTLING = 2;
+    private int scrollStatus = 0;
+
+    private static final int INVALID_POINTER = -1;
+    private int mScrollPointerId = INVALID_POINTER;
+
+    private VelocityTracker mVelocityTracker = VelocityTracker.obtain();
+    private ViewFlinger mViewFlinger = new ViewFlinger();
 
     public NoteView(Context context) {
         super(context);
@@ -108,30 +118,7 @@ public class NoteView extends View {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-//        LogUtil.e("onLayout----left*****" + left);
-//        LogUtil.e("onLayout----top*****" + top);
-//        LogUtil.e("onLayout----right*****" + right);
-//        LogUtil.e("onLayout----bottom*****" + bottom);
-//        LogUtil.e("onLayout----height*****" + getHeight());
-//        Rect viewport = new Rect();
-//        getGlobalVisibleRect(viewport);
-//        LogUtil.e("onLayout----viewport.left*****" + viewport.left);
-//        LogUtil.e("onLayout----viewport.top*****" + viewport.top);
-//        LogUtil.e("onLayout----viewport.bottom*****" + viewport.bottom);
     }
-
-    private int mMinFlingVelocity, mMaxFlingVelocity;
-    private float touchY;
-    private final int SCROLL_STATE_IDLE = 0;
-    private final int SCROLL_STATE_DRAGGING = 1;
-    private final int SCROLL_STATE_SETTLING = 2;
-    private int scrollStatus = 0;
-
-    private static final int INVALID_POINTER = -1;
-    private int mScrollPointerId = INVALID_POINTER;
-
-    private VelocityTracker mVelocityTracker = VelocityTracker.obtain();
-    private ViewFlinger mViewFlinger = new ViewFlinger();
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -140,6 +127,7 @@ public class NoteView extends View {
         mVelocityTracker.addMovement(vtev);
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                currentScrollYEND = false;
                 if (scrollStatus == SCROLL_STATE_SETTLING) {
                     mViewFlinger.stop();
                 }
@@ -148,6 +136,7 @@ public class NoteView extends View {
                 touchY = event.getY();
                 break;
             case MotionEventCompat.ACTION_POINTER_DOWN: {
+                currentScrollYEND = false;
                 mScrollPointerId = event.getPointerId(event.getActionIndex());
                 touchY = (int) (event.getY(event.getActionIndex()) + 0.5f);
                 break;
@@ -190,6 +179,7 @@ public class NoteView extends View {
                     mViewFlinger.fling((int) yVelocity);
                 } else {
                     setScrollState(SCROLL_STATE_IDLE);
+                    currentScrollYEND = isScrollYEnd();
                 }
                 resetTouch();
                 break;
@@ -237,6 +227,12 @@ public class NoteView extends View {
         if (contentHeight > mConetntHeight) {
             mConetntHeight = contentHeight;
         }
+        if (lastContentHeight != mConetntHeight) {
+            if (currentScrollYEND && !isScrollYEnd()) {
+                scrollToEnd();
+            }
+            lastContentHeight = mConetntHeight;
+        }
     }
 
     public void addText(String text) {
@@ -252,14 +248,8 @@ public class NoteView extends View {
     }
 
     public void clearText() {
-    }
-
-    private int[] getCursorLocation() {
-        return null;
-    }
-
-    private void measureCursorLocation() {
-
+        contentList.clear();
+        postInvalidate();
     }
 
     private void constrainScrollBy(int dx, int dy) {
@@ -287,6 +277,15 @@ public class NoteView extends View {
             }
         }
         scrollBy(dx, dy);
+    }
+
+    private boolean isScrollYEnd() {
+        return getScrollY() + getHeight() >= mConetntHeight;
+    }
+
+    private void scrollToEnd() {
+        constrainScrollBy(0, mConetntHeight - getScrollY() - getHeight());
+        currentScrollYEND = true;
     }
 
     class TextModel {
@@ -364,6 +363,8 @@ public class NoteView extends View {
                 mLastFlingY = y;
                 constrainScrollBy(0, dy);
                 postOnAnimation();
+            } else {
+                currentScrollYEND = isScrollYEnd();
             }
             enableRunOnAnimationRequests();
         }
