@@ -54,7 +54,7 @@ public class ExampleListAdapter extends RecyclerView.Adapter<ExampleListAdapter.
 
         public ExampleListViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.item_title);
+            title = (TextView) itemView.findViewById(R.id.item_title);
         }
     }
 }

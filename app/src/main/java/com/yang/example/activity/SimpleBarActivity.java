@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yang.example.R;
@@ -42,7 +43,7 @@ public abstract class SimpleBarActivity extends BaseActivity implements View.OnC
     @Override
     public void setContentView(View view) {
         ViewGroup parent = createParent();
-        parent.addView(view);
+        parent.addView(view, new LinearLayout.LayoutParams(-1, -1));
         super.setContentView(parent);
     }
 
@@ -59,7 +60,7 @@ public abstract class SimpleBarActivity extends BaseActivity implements View.OnC
     @Override
     public void setContentView(int layoutResID) {
         ViewGroup parent = createParent();
-        parent.addView(LayoutInflater.from(this).inflate(layoutResID, null));
+        parent.addView(LayoutInflater.from(this).inflate(layoutResID, null), new LinearLayout.LayoutParams(-1, -1));
         super.setContentView(parent);
     }
 
@@ -122,10 +123,10 @@ public abstract class SimpleBarActivity extends BaseActivity implements View.OnC
 
 
     private void initTitleBar() {
-        titleBar = findViewById(R.id.titlebar_layout);
-        left = findViewById(R.id.titlebar_left_tv);
-        right = findViewById(R.id.titlebar_right_tv);
-        title = findViewById(R.id.titlebar_title_tv);
+        titleBar = (ConstraintLayout) findViewById(R.id.titlebar_layout);
+        left = (ImageView) findViewById(R.id.titlebar_left_tv);
+        right = (ImageView) findViewById(R.id.titlebar_right_tv);
+        title = (TextView) findViewById(R.id.titlebar_title_tv);
         line = findViewById(R.id.titlebar_line);
         title.setText(getTitleText() == null ? "新页面" : getTitleText());
         left.setVisibility(leftButtonVisible ? View.VISIBLE : View.INVISIBLE);

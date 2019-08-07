@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".exoplayer.ExoplayerTestActivity">
+
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/simple_player"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:surface_type="texture_view" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/player_url_edt"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/gray3"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/simple_player_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/player_url_edt"
+            android:layout_alignParentEnd="true"
+            android:onClick="onClick"
+            android:text="stop" />
+
+        <Button
+            android:id="@+id/simple_player_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/player_url_edt"
+            android:layout_centerHorizontal="true"
+            android:onClick="onClick"
+            android:text="release" />
+        <Button
+            android:id="@+id/simple_player_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/player_url_edt"
+            android:layout_alignParentStart="true"
+            android:onClick="onClick"
+            android:text="play" />
+    </RelativeLayout>
+</RelativeLayout>

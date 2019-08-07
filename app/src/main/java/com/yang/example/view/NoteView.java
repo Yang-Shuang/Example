@@ -14,13 +14,17 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.WindowManager;
 import android.widget.OverScroller;
+import android.widget.TextView;
 
 import com.yang.example.R;
+import com.yang.example.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +61,9 @@ public class NoteView extends View {
 
     private VelocityTracker mVelocityTracker = VelocityTracker.obtain();
     private ViewFlinger mViewFlinger = new ViewFlinger();
+
+    private int screen_width;
+    private int screen_height;
 
     public NoteView(Context context) {
         super(context);
@@ -107,11 +114,36 @@ public class NoteView extends View {
         mTouchSlop = vc.getScaledTouchSlop();
         mMinFlingVelocity = vc.getScaledMinimumFlingVelocity();
         mMaxFlingVelocity = vc.getScaledMaximumFlingVelocity();
+
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metric);
+        screen_width = metric.widthPixels;
+        screen_height = metric.heightPixels;
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        int measuredWidth = 0;
+        int measuredHeight = 0;
+        switch (widthMode) {
+            case MeasureSpec.UNSPECIFIED:
+                measuredWidth = screen_width;
+                break;
+            case MeasureSpec.EXACTLY:
+                measuredWidth = widthSize;
+                break;
+            case MeasureSpec.AT_MOST:
+                measuredWidth = widthSize;
+                break;
+        }
+
+        measuredHeight = heightSize;
+        setMeasuredDimension(measuredWidth, measuredHeight);
     }
 
 

@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 
 import com.yang.example.R;
 import com.yang.example.adapter.ExampleListAdapter;
@@ -22,7 +21,7 @@ public class MainActivity extends SimpleBarActivity {
         System.loadLibrary("native-lib");
     }
 
-    //    public native String stringFromJNI();
+    public native String stringFromJNI();
 
     private RecyclerView mRecyclerView;
 
@@ -31,7 +30,7 @@ public class MainActivity extends SimpleBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showLeftImage(false);
-        mRecyclerView = findViewById(R.id.main_rv);
+        mRecyclerView = (RecyclerView) findViewById(R.id.main_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -39,6 +38,7 @@ public class MainActivity extends SimpleBarActivity {
     protected void onResume() {
         super.onResume();
         loadData();
+        LogUtil.e("***********************" + stringFromJNI());
     }
 
     private void loadData() {

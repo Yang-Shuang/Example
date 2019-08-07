@@ -7,6 +7,9 @@ public class LogDataBean extends BaseBean {
     private String content;
     private String tag;
 
+    public LogDataBean() {
+    }
+
     public LogDataBean(String type, String time, String content, String tag) {
         this.type = type;
         this.time = time;

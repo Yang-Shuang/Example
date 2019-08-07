@@ -29,8 +29,8 @@ public class CustomTextViewActivity extends SimpleBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_text_view);
 
-        mNoteView = findViewById(R.id.custom_textview);
-        mSwitch = findViewById(R.id.switch1);
+        mNoteView = (NoteView) findViewById(R.id.custom_textview);
+        mSwitch = (Switch) findViewById(R.id.switch1);
         mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
