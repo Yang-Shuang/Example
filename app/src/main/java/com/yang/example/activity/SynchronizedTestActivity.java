@@ -15,15 +15,25 @@ public class SynchronizedTestActivity extends SimpleBarActivity {
     static class DataManager {
         private static DataManager mDataManager;
 
-        private DataManager() {
+        public DataManager() {
         }
 
         public static DataManager getInstance() {
             return mDataManager == null ? mDataManager = new DataManager() : mDataManager;
         }
 
-        public static boolean isInit() {
-            return mDataManager != null;
+        public static void increase(){
+
+        }
+        public synchronized static void  syncIncrease(){
+
+        }
+
+        public void add(){
+
+        }
+        public synchronized void syncAdd(){
+
         }
     }
 }

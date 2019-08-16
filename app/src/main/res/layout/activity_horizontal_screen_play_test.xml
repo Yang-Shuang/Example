@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.HorizontalScreenPlayTestActivity">
+
+    <FrameLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/gray1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="文字测试"
+            android:textSize="30dp" />
+
+        <ImageView
+            android:onClick="onClick"
+            android:id="@+id/iv_quanping"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/icon_quanping" />
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

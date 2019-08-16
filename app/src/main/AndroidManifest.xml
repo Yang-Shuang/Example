@@ -36,6 +36,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.HorizontalScreenPlayTestActivity"
+            android:label="横屏播放测试"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.SocketTestActivity"
             android:label="Socket 及 ADB 通信测试"
             android:launchMode="singleTop"
@@ -47,6 +52,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".exoplayer.ExoplayerTestActivity"
+            android:configChanges="orientation|keyboard|screenSize"
             android:label="Exoplayer测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />

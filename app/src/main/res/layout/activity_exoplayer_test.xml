@@ -4,14 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray3"
     tools:context=".exoplayer.ExoplayerTestActivity">
 
-    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-        android:id="@+id/simple_player"
+    <FrameLayout
+        android:id="@+id/player_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:surface_type="texture_view" />
+        android:background="@color/red">
+
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/simple_player"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:surface_type="texture_view" />
+
+        <RelativeLayout
+            android:id="@+id/player_control"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom">
+
+            <ImageView
+                android:id="@+id/iv_quanping"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:onClick="onClick"
+                android:src="@drawable/icon_quanping" />
+        </RelativeLayout>
+    </FrameLayout>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -43,6 +68,7 @@
             android:layout_centerHorizontal="true"
             android:onClick="onClick"
             android:text="release" />
+
         <Button
             android:id="@+id/simple_player_start"
             android:layout_width="wrap_content"
@@ -52,4 +78,43 @@
             android:onClick="onClick"
             android:text="play" />
     </RelativeLayout>
+
+    <com.yang.example.view.HMViewPager
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/tran_black">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/gray1">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/gray2">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/gray3">
+
+        </FrameLayout>
+
+    </com.yang.example.view.HMViewPager>
+
+    <!--<fragment-->
+    <!--android:id="@+id/page_framgent"-->
+    <!--android:name="com.yang.example.fragment.PageEmptyFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="300dp"-->
+    <!--android:layout_alignParentBottom="true" />-->
+
+
 </RelativeLayout>

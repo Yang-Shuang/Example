@@ -2,6 +2,7 @@ package com.yang.example.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
 
 
     private Toast mToast;
@@ -77,7 +78,7 @@ public abstract class BaseActivity extends Activity {
         loadingView.setTag(R.id.loading_count, tag);
     }
 
-    protected void showToast(String message) {
+    public void showToast(String message) {
         if (StringUtil.isEmpty(message)) return;
         if (mToast == null) {
             LayoutInflater inflater = getLayoutInflater();
