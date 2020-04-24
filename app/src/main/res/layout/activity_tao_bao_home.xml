@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.yang.example.view.BannerColorBackView
+        android:id="@+id/banner_bg_iv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlebar"
+        android:background="@color/transparent">
+
+        <!--    <android.support.design.widget.CoordinatorLayout-->
+        <!--        android:id="@+id/root"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:orientation="vertical">-->
+        <com.yang.example.view.BaseNestScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/behavior_top_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_head="true">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="?attr/colorPrimary"
+                        app:tabIndicatorColor="@color/colorAccent"
+                        app:tabIndicatorHeight="4dp"
+                        app:tabSelectedTextColor="#000"
+                        app:tabTextColor="#fff" />
+                </FrameLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <android.support.v4.view.ViewPager
+                android:id="@id/behavior_bottom_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </com.yang.example.view.BaseNestScrollView>
+
+        <!--</android.support.design.widget.CoordinatorLayout>-->
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/top_view"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_menu_btn_id"
+            android:layout_width="64dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_home_top_left" />
+
+
+        <TextView
+            android:id="@+id/tv_input_search"
+            android:layout_width="0dp"
+            android:layout_height="29dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_solid_e8e8e8_corners_30dp"
+            android:gravity="center_vertical"
+            android:hint="搜索商品名称"
+            android:paddingLeft="12dp"
+            android:textColorHint="#aaaaaa"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv_message_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:src="@drawable/icon_top_message" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="onClick"
+        android:text="上方列表 +"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/reduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:onClick="onClick"
+        android:text="上方列表 —"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

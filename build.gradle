@@ -23,6 +23,7 @@ allprojects {
         maven {
             url "http://nexus2.tingyun.com/nexus/content/repositories/snapshots/"
         }
+        maven { url "https://jitpack.io" }
     }
 }
 

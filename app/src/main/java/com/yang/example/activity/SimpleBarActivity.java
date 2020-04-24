@@ -1,16 +1,12 @@
 package com.yang.example.activity;
 
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.os.Trace;
 import android.support.constraint.ConstraintLayout;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +16,11 @@ import android.widget.TextView;
 
 import com.yang.example.R;
 import com.yang.example.utils.LogUtil;
-import com.yang.example.utils.StatusBarUtil;
+import com.yang.example.utils.ExStatusBarUtil;
 
 public abstract class SimpleBarActivity extends BaseActivity implements View.OnClickListener {
+
+    protected String TAG = this.getClass().getSimpleName();
 
     private ImageView left, right;
     private TextView title;
@@ -53,7 +51,7 @@ public abstract class SimpleBarActivity extends BaseActivity implements View.OnC
         initTitleBar();
         if (titleBar.getBackground() instanceof ColorDrawable) {
             ColorDrawable drawable = (ColorDrawable) titleBar.getBackground();
-            StatusBarUtil.setStatusBarColor(this, drawable.getColor());
+            ExStatusBarUtil.setStatusBarColor(this, drawable.getColor());
         }
     }
 
@@ -134,6 +132,10 @@ public abstract class SimpleBarActivity extends BaseActivity implements View.OnC
         line.setVisibility(showLine ? View.VISIBLE : View.INVISIBLE);
         left.setOnClickListener(this);
         right.setOnClickListener(this);
+    }
+
+    protected void setTitleStr(String t){
+        title.setText(t);
     }
 
     @Override

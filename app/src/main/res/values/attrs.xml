@@ -6,4 +6,13 @@
         <attr name="warnColor" format="color"></attr>
         <attr name="normalColor" format="color"></attr>
     </declare-styleable>
+    <declare-styleable name="NumberPassWordEditView">
+        <attr name="length" format="integer" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="lineColor" format="color" />
+        <attr name="textAppearance" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="BaseNestScrollView">
+        <attr name="layout_head" format="boolean" />
+    </declare-styleable>
 </resources>

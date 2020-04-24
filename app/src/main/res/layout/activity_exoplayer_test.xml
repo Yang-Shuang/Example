@@ -80,31 +80,48 @@
     </RelativeLayout>
 
     <com.yang.example.view.HMViewPager
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
+        android:id="@+id/hmViewPager"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@color/tran_black">
+        android:layout_height="500dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/tran_black"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:onClick="onClick"
+                android:text="Page1" />
+
+        </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/gray1">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Page2" />
+
         </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/gray2">
+            android:layout_height="300dp">
 
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="@color/gray3">
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Page3" />
         </FrameLayout>
 
     </com.yang.example.view.HMViewPager>

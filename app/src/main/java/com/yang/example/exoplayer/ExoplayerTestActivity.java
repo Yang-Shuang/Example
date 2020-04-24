@@ -42,15 +42,16 @@ import com.yang.example.activity.SimpleBarActivity;
 import com.yang.example.adapter.LivePageAdapter;
 import com.yang.example.utils.LogUtil;
 import com.yang.example.utils.ScreenUtil;
+import com.yang.example.view.HMViewPager;
 
 public class ExoplayerTestActivity extends SimpleBarActivity implements ExoPlayer.EventListener {
-
 
         private SimpleExoPlayerView mPlayerView;
         private EditText urlEdt;
         private FrameLayout mPlayerContent;
         private RelativeLayout mPlayerControler;
         private ViewPager player_view_pager;
+        private HMViewPager hmViewPager;
 
         private SimpleExoPlayer player;
         private TrackSelector trackSelector;
@@ -78,6 +79,7 @@ public class ExoplayerTestActivity extends SimpleBarActivity implements ExoPlaye
                 urlEdt = findViewById(R.id.player_url_edt);
                 mPlayerContent = findViewById(R.id.player_content);
                 mPlayerControler = findViewById(R.id.player_control);
+                hmViewPager = findViewById(R.id.hmViewPager);
 //                player_view_pager = findViewById(R.id.player_view_pager);
 
 
@@ -260,17 +262,27 @@ public class ExoplayerTestActivity extends SimpleBarActivity implements ExoPlaye
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent ev) {
-//                LogUtil.e("Activity----dispatchTouchEvent -- " + ev.getAction());
-                boolean b = super.dispatchTouchEvent(ev);
-//                LogUtil.e("Activity----dispatchTouchEvent -- " + b);
+                LogUtil.e("Activity----dispatchTouchEvent -- " + ev.getAction());
+                boolean b = false;
+                if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+                        onUserInteraction();
+                }
+                if (getWindow().superDispatchTouchEvent(ev)) {
+                        b = true;
+                        if (hmViewPager.isExOnTouch()){
+                                LogUtil.e("isExOnTouch");
+                        }
+                }
+                LogUtil.e("Activity----dispatchTouchEvent -- " + b);
                 return b;
         }
 
+
         @Override
         public boolean onTouchEvent(MotionEvent event) {
-//                LogUtil.e("Activity----onTouchEvent -- " + event.getAction());
+                LogUtil.e("Activity----onTouchEvent -- " + event.getAction());
                 boolean b = super.onTouchEvent(event);
-//                LogUtil.e("Activity----onTouchEvent -- " + b);
+                LogUtil.e("Activity----onTouchEvent -- " + b);
                 return b;
         }
 }
