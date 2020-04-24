@@ -32,6 +32,11 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
     private NestedScrollingParentHelper mParentHelper;
     private NestedScrollingChildHelper mChildHelper;
     private int scrollVerticalrange = 0;
+    private RecyclerView.OnScrollListener onScrollListener;
+
+    public void setOnScrollListener(RecyclerView.OnScrollListener onScrollListener) {
+        this.onScrollListener = onScrollListener;
+    }
 
     public void setLog(boolean log) {
         this.log = log;
@@ -69,6 +74,22 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         super.onViewAdded(child);
         if (child.getLayoutParams() instanceof NestLayoutParams && ((NestLayoutParams) child.getLayoutParams()).isHead) {
             ceilingView = child;
+        }
+
+        if (child instanceof RecyclerView) {
+            ((RecyclerView) child).addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    if (onScrollListener != null)
+                        onScrollListener.onScrollStateChanged(recyclerView, newState);
+                }
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    if (onScrollListener != null)
+                        onScrollListener.onScrolled(recyclerView, dx, dy);
+                }
+            });
         }
     }
 
@@ -328,6 +349,14 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
     //***********************************    NestedScrollingChild2   *************************************
 
 
+    public int getRealScrollY() {
+        int y = getScrollY();
+        if (getChildCount() > 0 && getChildAt(0) instanceof RecyclerView) {
+            y = y + ((RecyclerView) getChildAt(0)).computeVerticalScrollOffset();
+        }
+        return y;
+    }
+
     @Override
     protected int computeVerticalScrollRange() {
         return scrollVerticalrange;
@@ -360,6 +389,13 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
             sy = getScrollY() < Math.abs(y) ? -getScrollY() : y;
         }
         scrollBy(0, sy);
+        if (sy != 0) {
+            if (onScrollListener != null) {
+                onScrollListener.onScrollStateChanged(null, 1);
+                onScrollListener.onScrolled(null, 0, sy);
+                onScrollListener.onScrollStateChanged(null, 0);
+            }
+        }
         return sy;
     }
 
@@ -478,6 +514,11 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
             if (sy != 0) {
                 scrollBy(0, sy);
                 log("Parent  fling " + sy);
+                if (onScrollListener != null) {
+                    onScrollListener.onScrollStateChanged(null, 2);
+                    onScrollListener.onScrolled(null, 0, sy);
+                    onScrollListener.onScrollStateChanged(null, 0);
+                }
             }
             return scrollByY - sy;
         }
