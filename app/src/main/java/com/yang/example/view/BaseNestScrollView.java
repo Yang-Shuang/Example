@@ -31,6 +31,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
 
     private NestedScrollingParentHelper mParentHelper;
     private NestedScrollingChildHelper mChildHelper;
+    private int scrollVerticalrange = 0;
 
     public void setLog(boolean log) {
         this.log = log;
@@ -87,8 +88,10 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
 
         log("Parent Width : " + getWidth());
         log("Parent Height : " + getHeight());
+        scrollVerticalrange = 0;
         for (int i = 0; i < count; i++) {
             View child = getChildAt(i);
+            if (child.getVisibility() == GONE) continue;
             // 子view最大宽度  默认充满父控件
             int childWidth = getWidth() - getPaddingLeft() - getPaddingRight();
             // 子view最大高度  需减去吸顶卡位child高度
@@ -105,6 +108,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
             if (child.getLayoutParams() instanceof NestLayoutParams && ((NestLayoutParams) child.getLayoutParams()).isHead) {
                 ceilHeight += childHeight;
             }
+            scrollVerticalrange += childHeight;
             y = y + childHeight;
         }
     }
@@ -144,6 +148,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
     }
 
     boolean isScrollFlingParent(RecyclerView recyclerView, int dy) {
+        if (recyclerView == null) return isScrollFlingParent(dy);
         boolean isAbove = isAboveCeilingChild(recyclerView);
         if (isAbove) {
             // ceilingView 上方RecyclerView
@@ -322,6 +327,22 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
     }
     //***********************************    NestedScrollingChild2   *************************************
 
+
+    @Override
+    protected int computeVerticalScrollRange() {
+        return scrollVerticalrange;
+    }
+
+    @Override
+    protected int computeVerticalScrollOffset() {
+        return super.computeVerticalScrollOffset();
+    }
+
+    @Override
+    protected int computeHorizontalScrollExtent() {
+        return super.computeHorizontalScrollExtent();
+    }
+
     /**
      * 计算并滚动Y
      *
@@ -330,8 +351,10 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
     private int computeScrollY(int y) {
         int sy = 0;
         if (y >= 0) {
+            int range = scrollVerticalrange - ceilingView.getTop() > getHeight() ? ceilingView.getTop() : scrollVerticalrange - getHeight();
             // 确保上拉不会滑出
-            sy = getScrollY() + y > ceilingView.getTop() ? ceilingView.getTop() - getScrollY() : y;
+            if (range <= 0) return 0;
+            sy = getScrollY() + y > range ? range - getScrollY() : y;
         } else {
             // 确保下拉不会滑出
             sy = getScrollY() < Math.abs(y) ? -getScrollY() : y;
@@ -534,7 +557,9 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         int computeCanScrollY(int y) {
             int sy = 0;
             if (y >= 0) {
-                sy = getScrollY() + y > ceilingView.getTop() ? ceilingView.getTop() - getScrollY() : y;
+                int range = scrollVerticalrange - ceilingView.getTop() > getHeight() ? ceilingView.getTop() : scrollVerticalrange - getHeight();
+                if (range <= 0) return 0;
+                sy = getScrollY() + y > range ? range - getScrollY() : y;
             } else {
                 sy = getScrollY() + y < 0 ? -getScrollY() : y;
             }
