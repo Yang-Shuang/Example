@@ -26,17 +26,22 @@ import com.yang.example.utils.ScrollViewHelper;
 public class BaseNestScrollView extends FrameLayout implements NestedScrollingParent2, NestedScrollingChild2 {
 
     private static final String TAG = "BaseNestScrollView";
+    public static final int SCROLL_STATE_IDLE = 0;
+    public static final int SCROLL_STATE_DRAGGING = 1;
+    public static final int SCROLL_STATE_SETTLING = 2;
+
     private boolean log = true;
     private View ceilingView;
     private ViewFlinger mViewFlinger;
+    private boolean isKeepTop = false;
 
     private NestedScrollingParentHelper mParentHelper;
     private NestedScrollingChildHelper mChildHelper;
     private int scrollVerticalrange = 0;
-    private RecyclerView.OnScrollListener onScrollListener;
+    private OnScrollListener onScrollListener;
     private ScrollViewHelper mScrollViewHelper;
 
-    public void setOnScrollListener(RecyclerView.OnScrollListener onScrollListener) {
+    public void setOnScrollListener(OnScrollListener onScrollListener) {
         this.onScrollListener = onScrollListener;
     }
 
@@ -66,7 +71,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
             @Override
             public void onScrollBy(int x, int y) {
                 if (isScrollFlingParent(y)) {
-                    computeScrollY(y);
+                    computeScrollY(y, 1);
                 }
             }
 
@@ -157,6 +162,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
             // 如果是吸顶卡位view  累加ceilHeight
             if (childParams instanceof NestLayoutParams && ((NestLayoutParams) childParams).isHead) {
                 ceilHeight += childHeight;
+                isKeepTop = y == 0;
             }
             scrollVerticalrange += childHeight + childParams.topMargin + childParams.bottomMargin;
             y = y + childHeight;
@@ -221,6 +227,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         if (view.getId() == -1) return "NO_ID";
         return view.getContext().getResources().getResourceEntryName(view.getId());
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         return mScrollViewHelper.onTouchEvent(event);
@@ -256,13 +263,13 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         if (target instanceof RecyclerView) {
             RecyclerView recyclerView = (RecyclerView) target;
             if (isScrollFlingParent(recyclerView, dy)) {
-                consumed[1] = computeScrollY(dy);
+                consumed[1] = computeScrollY(dy, 1);
             } else {
                 ViewParentCompat.onNestedPreScroll(getParent(), this, dx, dy, consumed, type);
             }
         } else {
             if (isScrollFlingParent(dy)) {
-                consumed[1] = computeScrollY(dy);
+                consumed[1] = computeScrollY(dy, 1);
             } else {
                 ViewParentCompat.onNestedPreScroll(getParent(), this, dx, dy, consumed, type);
             }
@@ -401,7 +408,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
      *
      * @return 可返回当前控件消耗的滚动距离
      */
-    private int computeScrollY(int y) {
+    private int computeScrollY(int y, int state) {
         int sy = 0;
         if (y >= 0) {
             int range = scrollVerticalrange - ceilingView.getTop() > getHeight() ? ceilingView.getTop() : scrollVerticalrange - getHeight();
@@ -415,9 +422,15 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         scrollBy(0, sy);
         if (sy != 0) {
             if (onScrollListener != null) {
-                onScrollListener.onScrollStateChanged(null, 1);
+                onScrollListener.onScrollStateChanged(null, state);
                 onScrollListener.onScrolled(null, 0, sy);
                 onScrollListener.onScrollStateChanged(null, 0);
+                if (ceilingView != null) {
+                    if (isKeepTop != (getScrollY() >= ceilingView.getTop())) {
+                        isKeepTop = getScrollY() >= ceilingView.getTop();
+                        onScrollListener.onHeadViewKeepTop(ceilingView, isKeepTop);
+                    }
+                }
             }
         }
         return sy;
@@ -536,13 +549,8 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
             //计算parent能滚动的距离
             int sy = computeCanScrollY(scrollByY);
             if (sy != 0) {
-                scrollBy(0, sy);
+                computeScrollY(sy, 2);
                 log("Parent  fling " + sy);
-                if (onScrollListener != null) {
-                    onScrollListener.onScrollStateChanged(null, 2);
-                    onScrollListener.onScrolled(null, 0, sy);
-                    onScrollListener.onScrollStateChanged(null, 0);
-                }
             }
             return scrollByY - sy;
         }
@@ -630,5 +638,18 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
             }
             return sy;
         }
+    }
+
+    public abstract static class OnScrollListener {
+        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+        }
+
+        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        }
+
+        public void onHeadViewKeepTop(View view, boolean isKeepTop) {
+        }
+
+        ;
     }
 }

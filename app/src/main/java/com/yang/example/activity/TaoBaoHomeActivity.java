@@ -27,6 +27,7 @@ import com.yang.example.utils.LogUtil;
 import com.yang.example.utils.ScreenUtil;
 import com.yang.example.utils.StatusBarUtil;
 import com.yang.example.view.BannerColorBackView;
+import com.yang.example.view.BaseNestScrollView;
 import com.yang.example.view.HMBallPulseHeader;
 
 import java.util.ArrayList;
@@ -34,8 +35,7 @@ import java.util.List;
 
 public class TaoBaoHomeActivity extends BaseActivity implements View.OnClickListener {
 
-    //    SwipeRefreshLayout mRefresh;
-//    CoordinatorLayout mCoordinatorLayout;
+    BaseNestScrollView baseNestScrollView;
     SmartRefreshLayout mRefresh;
     RecyclerView mRecyclerView;
     ViewPager mViewPager;
@@ -53,6 +53,7 @@ public class TaoBaoHomeActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tao_bao_home);
 
+        baseNestScrollView = (BaseNestScrollView) findViewById(R.id.baseNestScrollView);
         mRecyclerView = (RecyclerView) findViewById(R.id.behavior_top_view);
         mViewPager = (ViewPager) findViewById(R.id.behavior_bottom_view);
 //        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.root);
@@ -61,6 +62,7 @@ public class TaoBaoHomeActivity extends BaseActivity implements View.OnClickList
 
         mRefresh = (SmartRefreshLayout) findViewById(R.id.refresh);
         mRefresh.setRefreshHeader(new HMBallPulseHeader(this));
+        mRefresh.setEnableLoadMore(false);
         mRefresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -97,7 +99,8 @@ public class TaoBaoHomeActivity extends BaseActivity implements View.OnClickList
 
         mAdapter = new StringItemAdapter(data1);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+        baseNestScrollView.setOnScrollListener(new BaseNestScrollView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
@@ -106,7 +109,7 @@ public class TaoBaoHomeActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                LogUtil.e("onScrolled : " + dy);
+                LogUtil.e("onScrolled  :  " + baseNestScrollView.getRealScrollY());
             }
         });
 
@@ -161,6 +164,7 @@ public class TaoBaoHomeActivity extends BaseActivity implements View.OnClickList
     }
 
     private void setupViewPager(ViewPager viewPager) {
+        viewPager.setVisibility(View.VISIBLE);
         List<Fragment> mFragments = new ArrayList<>();
         for (int i = 0; i < mTitles.length; i++) {
             Bundle args = new Bundle();
