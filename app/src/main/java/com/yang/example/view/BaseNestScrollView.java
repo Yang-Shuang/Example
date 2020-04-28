@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.OverScroller;
 
 import com.yang.example.R;
+import com.yang.example.utils.ScrollViewHelper;
 
 public class BaseNestScrollView extends FrameLayout implements NestedScrollingParent2, NestedScrollingChild2 {
 
@@ -33,6 +34,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
     private NestedScrollingChildHelper mChildHelper;
     private int scrollVerticalrange = 0;
     private RecyclerView.OnScrollListener onScrollListener;
+    private ScrollViewHelper mScrollViewHelper;
 
     public void setOnScrollListener(RecyclerView.OnScrollListener onScrollListener) {
         this.onScrollListener = onScrollListener;
@@ -58,6 +60,30 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         mParentHelper = new NestedScrollingParentHelper(this);
         mChildHelper = new NestedScrollingChildHelper(this);
         setNestedScrollingEnabled(true);
+        mScrollViewHelper = new ScrollViewHelper(this);
+
+        mScrollViewHelper.setOnScrollEventListener(new ScrollViewHelper.OnScrollEventListener() {
+            @Override
+            public void onScrollBy(int x, int y) {
+                if (isScrollFlingParent(y)) {
+                    computeScrollY(y);
+                }
+            }
+
+            @Override
+            public void onFling(int vx, int vy) {
+                if (ceilingView != null) {
+                    View view = getChildAt(indexOfChild(ceilingView) + (vy > 0 ? 1 : -1));
+                    RecyclerView r = findRecyclerView(view);
+                    mViewFlinger.fling(r, vy);
+                }
+            }
+
+            @Override
+            public void onStopFling() {
+                mViewFlinger.stop();
+            }
+        });
     }
 
     public BaseNestScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -113,8 +139,9 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         for (int i = 0; i < count; i++) {
             View child = getChildAt(i);
             if (child.getVisibility() == GONE) continue;
+            MarginLayoutParams childParams = (MarginLayoutParams) child.getLayoutParams();
             // 子view最大宽度  默认充满父控件
-            int childWidth = getWidth() - getPaddingLeft() - getPaddingRight();
+            int childWidth = getWidth() - getPaddingLeft() - getPaddingRight() - childParams.leftMargin - childParams.rightMargin;
             // 子view最大高度  需减去吸顶卡位child高度
             int childHeight = getHeight() - getPaddingTop() - getPaddingBottom() - ceilHeight;
 
@@ -124,12 +151,14 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
                 // 子view MeasuredHeight小于childHeight  说明此子view 不会充满全凭，如只有一个item的recycleview，或者固定高度tab等
                 childHeight = child.getMeasuredHeight();
             }
+            x = x + childParams.leftMargin;
+            y = y + childParams.topMargin;
             child.layout(x, y, x + childWidth, y + childHeight);
             // 如果是吸顶卡位view  累加ceilHeight
-            if (child.getLayoutParams() instanceof NestLayoutParams && ((NestLayoutParams) child.getLayoutParams()).isHead) {
+            if (childParams instanceof NestLayoutParams && ((NestLayoutParams) childParams).isHead) {
                 ceilHeight += childHeight;
             }
-            scrollVerticalrange += childHeight;
+            scrollVerticalrange += childHeight + childParams.topMargin + childParams.bottomMargin;
             y = y + childHeight;
         }
     }
@@ -144,7 +173,8 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
 
     private boolean isCeilingVisiable() {
         if (ceilingView == null) return false;
-        return getHeight() + getScrollY() > ceilingView.getTop();
+        MarginLayoutParams p = (MarginLayoutParams) ceilingView.getLayoutParams();
+        return getHeight() + getScrollY() > ceilingView.getTop() - p.topMargin;
     }
 
     private boolean isCeilingTop() {
@@ -191,15 +221,9 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
         if (view.getId() == -1) return "NO_ID";
         return view.getContext().getResources().getResourceEntryName(view.getId());
     }
-
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        return super.onInterceptTouchEvent(ev);
+    public boolean onTouchEvent(MotionEvent event) {
+        return mScrollViewHelper.onTouchEvent(event);
     }
 
     //***********************************    NestedScrollingParent2   *************************************
@@ -228,7 +252,7 @@ public class BaseNestScrollView extends FrameLayout implements NestedScrollingPa
 
     @Override
     public void onNestedPreScroll(@NonNull View target, int dx, int dy, @Nullable int[] consumed, int type) {
-        if (consumed == null || dy == 0) return;
+        if (consumed == null || dy == 0 || Math.abs(dx) > Math.abs(dy)) return;
         if (target instanceof RecyclerView) {
             RecyclerView recyclerView = (RecyclerView) target;
             if (isScrollFlingParent(recyclerView, dy)) {
