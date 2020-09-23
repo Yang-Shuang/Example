@@ -1,4 +1,4 @@
-package com.yang.example.activity;
+package com.yang.example.activity.view;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import com.yang.example.R;
+import com.yang.example.activity.SimpleBarActivity;
 import com.yang.example.utils.LogUtil;
 import com.yang.example.view.NoteView;
 

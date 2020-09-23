@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ListViewPullToRefreshViewActivity">
+    tools:context=".activity.view.ListViewPullToRefreshViewActivity">
 
     <com.yang.example.view.PullToRefreshView
         android:id="@+id/list_view_content"
@@ -26,12 +26,12 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
     </com.yang.example.view.PullToRefreshView>
 
     <Button

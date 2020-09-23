@@ -1,9 +1,9 @@
-package com.yang.example.activity;
+package com.yang.example.activity.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yang.example.R;
+import com.yang.example.activity.SimpleBarActivity;
 import com.yang.example.utils.LogUtil;
 import com.yang.example.view.PullToRefreshView;
 

@@ -1,6 +1,6 @@
 package com.yang.example;
 
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 //import com.growingio.android.sdk.collection.Configuration;
 //import com.growingio.android.sdk.collection.GrowingIO;

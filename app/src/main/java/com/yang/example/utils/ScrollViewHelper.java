@@ -1,7 +1,7 @@
 package com.yang.example.utils;
 
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.VelocityTrackerCompat;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -115,6 +115,8 @@ public class ScrollViewHelper {
     }
 
     public interface OnScrollEventListener {
+        void onStopScroll();
+
         void onScrollBy(int x, int y);
 
         void onFling(int vx, int vy);

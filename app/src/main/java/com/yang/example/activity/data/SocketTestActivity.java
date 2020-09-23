@@ -1,4 +1,4 @@
-package com.yang.example.activity;
+package com.yang.example.activity.data;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.EditText;
 import com.github.messenger.Messenger;
 import com.github.messenger.bean.MessageBean;
 import com.yang.example.R;
+import com.yang.example.activity.SimpleBarActivity;
 import com.yang.example.utils.LogUtil;
 import com.yang.example.utils.StreamUtils;
 import com.yang.example.view.NoteView;

@@ -1,8 +1,9 @@
-package com.yang.example.activity;
+package com.yang.example.activity.view;
 
 import android.os.Bundle;
 
 import com.yang.example.R;
+import com.yang.example.activity.SimpleBarActivity;
 import com.yang.example.view.NumberPassWordEditView;
 import com.yang.example.view.NumberPassWordInputView;
 

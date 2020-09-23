@@ -1,10 +1,11 @@
-package com.yang.example.activity;
+package com.yang.example.activity.androidApi;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
 import com.yang.example.R;
+import com.yang.example.activity.SimpleBarActivity;
 import com.yang.example.bean.LogDataBean;
 import com.yang.example.rx.SimpleTask;
 import com.yang.example.utils.LogUtil;

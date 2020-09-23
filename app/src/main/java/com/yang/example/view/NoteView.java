@@ -5,9 +5,9 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.VelocityTrackerCompat;
+import androidx.core.view.ViewCompat;
 import android.text.BoringLayout;
 import android.text.BoringLayout.Metrics;
 import android.text.Layout;
@@ -21,10 +21,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 import android.widget.OverScroller;
-import android.widget.TextView;
 
 import com.yang.example.R;
-import com.yang.example.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

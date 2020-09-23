@@ -1,4 +1,4 @@
-package com.yang.example.activity;
+package com.yang.example.activity.androidApi;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -6,6 +6,7 @@ import android.os.StatFs;
 import android.view.View;
 
 import com.yang.example.R;
+import com.yang.example.activity.SimpleBarActivity;
 import com.yang.example.utils.LogUtil;
 
 import java.io.File;

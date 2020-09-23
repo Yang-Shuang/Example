@@ -40,37 +40,37 @@
             android:name=".activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.SetPassWordActivity"
+        <activity android:name=".activity.view.SetPassWordActivity"
             android:label="设置密码"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.TaoBaoHomeActivity"
+            android:name=".activity.view.TaoBaoHomeActivity"
             android:label="商城首页"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ListPageTestActivity"
+            android:name=".activity.view.ListPageTestActivity"
             android:label="List Page"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.CropImageActivity"
+            android:name=".activity.other.CropImageActivity"
             android:label="图片裁切"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.HorizontalScreenPlayTestActivity"
-            android:label="横屏播放测试"
+            android:name=".activity.androidApi.HorizontalScreenTestActivity"
+            android:label="横竖屏切换测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SocketTestActivity"
+            android:name=".activity.data.SocketTestActivity"
             android:label="Socket 及 ADB 通信测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ListViewPullToRefreshViewActivity"
+            android:name=".activity.view.ListViewPullToRefreshViewActivity"
             android:label="ListView + PullToRefreshView 测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
@@ -81,52 +81,52 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WebViewTestActivity"
+            android:name=".activity.view.WebViewTestActivity"
             android:label="WebView测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DataReadWriteTestActivity"
-            android:label="数据读写测试"
+            android:name=".activity.androidApi.DataReadWriteTestActivity"
+            android:label="数据裤读写测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.CustomTextViewActivity"
+            android:name=".activity.view.CustomTextViewActivity"
             android:label="自定义view 文字绘制"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.JNIPerformanceTestActivity"
+            android:name=".activity.androidApi.JNIPerformanceTestActivity"
             android:label="JNI使用性能效率分析"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RippleEffectActivity"
+            android:name=".activity.view.RippleEffectActivity"
             android:label="波纹特效效果实现"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.RxJavaAndThreadPoolActivity"
+            android:name=".activity.other.RxJavaAndThreadPoolActivity"
             android:label="RxJava及线程使用探索"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.CollectionTestActivity"
+            android:name=".activity.javaApi.CollectionTestActivity"
             android:label="集合对比测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SynchronizedTestActivity"
+            android:name=".activity.javaApi.SynchronizedTestActivity"
             android:label="Synchronized 测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AesEncryptTestActivity"
+            android:name=".activity.data.AesEncryptTestActivity"
             android:label="AES 加解密测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.InternalStorageWriteActivity"
+            android:name=".activity.androidApi.InternalStorageWriteActivity"
             android:label="内部存储写入文件测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
@@ -136,7 +136,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.DanmaKuTestActivity"
+            android:name=".activity.other.DanmaKuTestActivity"
             android:label="弹幕测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />

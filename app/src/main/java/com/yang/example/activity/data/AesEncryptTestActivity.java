@@ -1,9 +1,10 @@
-package com.yang.example.activity;
+package com.yang.example.activity.data;
 
 import android.os.Bundle;
 
 
 import com.yang.example.R;
+import com.yang.example.activity.SimpleBarActivity;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
