@@ -13,8 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.activity.SimpleBarActivity;
+import com.yang.base.utils.LogUtil;
 import com.yang.example.view.PullToRefreshView;
 
 import java.util.ArrayList;

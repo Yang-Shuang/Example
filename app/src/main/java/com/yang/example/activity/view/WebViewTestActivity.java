@@ -2,25 +2,21 @@ package com.yang.example.activity.view;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.activity.SimpleBarActivity;
+import com.yang.base.utils.LogUtil;
 import com.yang.example.utils.WebViewUtils;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 

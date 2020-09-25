@@ -4,7 +4,7 @@ import android.content.Context;
 import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.utils.LogUtil;
 
 public class MyViewPager extends ViewPager {
 

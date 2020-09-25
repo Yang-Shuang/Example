@@ -6,8 +6,8 @@ import android.os.StatFs;
 import android.view.View;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.activity.SimpleBarActivity;
+import com.yang.base.utils.LogUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;

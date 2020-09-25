@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.yang.base.utils.LogUtil;
+import com.yang.base.utils.ScreenUtil;
+
 public class ImageUtils {
 
     public static void loadBannerBackgroud(Context context, String url, onLoadBitmapListener listener) {

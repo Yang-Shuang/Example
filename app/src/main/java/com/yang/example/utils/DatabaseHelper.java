@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.yang.base.utils.LogUtil;
 import com.yang.example.bean.LogDataBean;
 
 public class DatabaseHelper extends SQLiteOpenHelper {

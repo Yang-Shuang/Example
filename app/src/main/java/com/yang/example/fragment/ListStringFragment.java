@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.yang.example.R;
 import com.yang.example.adapter.StringItemAdapter;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,12 +3,11 @@ package com.yang.example.activity.androidApi;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
-import com.yang.example.utils.ScreenUtil;
+import com.yang.base.activity.SimpleBarActivity;
+import com.yang.base.utils.ScreenUtil;
 
 public class HorizontalScreenTestActivity extends SimpleBarActivity {
 

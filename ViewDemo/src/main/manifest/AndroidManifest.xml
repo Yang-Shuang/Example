@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yang.viewdemo">
+
+    <application>
+        <activity
+            android:name=".MainActivity"
+            android:label="支付测试"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name=".service.GetDataService"
+            android:exported="false" />
+
+        <activity
+            android:name=".DataActivity"
+            android:label="进程间通信数据查看"
+            android:process=":data"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CustomViewActivity"
+            android:label="自定义View事件"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AIDLDataActivity"
+            android:label="AIDL跨进程通信"
+            android:process=":data"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ConstraintActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OkHttpDemoActivity"
+            android:label="OkHttp Demo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewGroupTestActivity"
+            android:label="ViewGroupTest"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

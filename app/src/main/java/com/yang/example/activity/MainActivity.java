@@ -4,12 +4,14 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yang.base.activity.SimpleBarActivity;
 import com.yang.example.R;
 import com.yang.example.adapter.ExampleListAdapter;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,14 +32,16 @@ public class MainActivity extends SimpleBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showLeftImage(false);
+        showRightImage(false);
+        setTitleStr("Example");
         mRecyclerView = (RecyclerView) findViewById(R.id.main_rv);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        loadData();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadData();
         LogUtil.e("***********************" + stringFromJNI());
     }
 

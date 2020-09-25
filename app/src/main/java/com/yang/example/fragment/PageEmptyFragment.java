@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
+import com.yang.base.activity.SimpleBarActivity;
 
 import java.util.Random;
 

@@ -5,7 +5,7 @@ import androidx.multidex.MultiDexApplication;
 //import com.growingio.android.sdk.collection.Configuration;
 //import com.growingio.android.sdk.collection.GrowingIO;
 import com.yang.example.utils.DatabaseHelper;
-import com.yang.example.utils.ScreenUtil;
+import com.yang.base.utils.ScreenUtil;
 
 public class ExampleApplication extends MultiDexApplication {
 

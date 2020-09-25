@@ -1,14 +1,12 @@
 package com.yang.example.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Bundle;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
+import com.yang.base.activity.BaseActivity;
 import com.yang.example.R;
-import com.yang.example.utils.WebViewUtils;
 
 public class LauncherActivity extends BaseActivity {
 

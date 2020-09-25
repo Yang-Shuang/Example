@@ -1,18 +1,17 @@
 package com.yang.example.activity.javaApi;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
-import com.yang.example.rx.SimpleTask;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.activity.SimpleBarActivity;
+import com.yang.base.rx.SimpleTask;
+import com.yang.base.utils.LogUtil;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static com.yang.example.rx.SimpleTask.TASK_ID;
+import static com.yang.base.rx.SimpleTask.TASK_ID;
 
 public class CollectionTestActivity extends SimpleBarActivity {
 

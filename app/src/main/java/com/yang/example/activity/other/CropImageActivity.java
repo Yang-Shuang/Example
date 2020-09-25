@@ -18,8 +18,9 @@ import com.yalantis.ucrop.model.ExifInfo;
 import com.yalantis.ucrop.model.ImageState;
 import com.yalantis.ucrop.task.BitmapCropTask;
 import com.yalantis.ucrop.util.BitmapLoadUtils;
+import com.yang.base.utils.StreamUtils;
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
+import com.yang.base.activity.SimpleBarActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,34 +49,12 @@ public class CropImageActivity extends SimpleBarActivity {
         File file = new File(getFilesDir() + "/img_horizontal.jpg");
         File file1 = new File(getFilesDir() + "/img_vertical.jpeg");
         if (!file.exists()) {
-            copyAssetsFile("img_horizontal.jpg", getFilesDir() + "/img_horizontal.jpg");
+            StreamUtils.copyAssetsFile(this,"img_horizontal.jpg", getFilesDir() + "/img_horizontal.jpg");
         }
         if (!file1.exists()) {
-            copyAssetsFile("img_vertical.jpeg", getFilesDir() + "/img_vertical.jpeg");
+            StreamUtils.copyAssetsFile(this,"img_vertical.jpeg", getFilesDir() + "/img_vertical.jpeg");
         }
     }
-
-    private void copyAssetsFile(String assetsPath, String outPath) {
-        try {
-            OutputStream myOutput = new FileOutputStream(outPath);
-            InputStream myInput = getAssets().open(assetsPath);
-            byte[] buffer = new byte[1024 * 8];
-            int length = myInput.read(buffer);
-            while (length > 0) {
-                myOutput.write(buffer, 0, length);
-                length = myInput.read(buffer);
-            }
-            myOutput.flush();
-            myInput.close();
-            myOutput.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_crop_h:

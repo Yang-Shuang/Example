@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.yang.base.utils.LogUtil;
+
 import java.util.Arrays;
 
 public class TopViewBehavior extends CoordinatorLayout.Behavior<View> {

@@ -2,8 +2,9 @@ package com.yang.example.activity.other;
 
 import android.os.Bundle;
 
+import com.yang.base.utils.StreamUtils;
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
+import com.yang.base.activity.SimpleBarActivity;
 import com.yang.example.utils.BiliDanmukuParser;
 
 import android.content.pm.ActivityInfo;
@@ -13,8 +14,6 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.os.Environment;
 
 import master.flame.danmaku.danmaku.util.SystemClock;
 
@@ -31,6 +30,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.VideoView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -159,6 +159,10 @@ public class DanmaKuTestActivity extends SimpleBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danma_ku_test);
+
+        if (!new File(getFilesDir() + "/test.mp4").exists())
+            StreamUtils.copyAssetsFile(this,"test.mp4", getFilesDir() + "/test.mp4");
+
         findViews();
     }
 
@@ -185,7 +189,6 @@ public class DanmaKuTestActivity extends SimpleBarActivity {
         IDataSource<?> dataSource = loader.getDataSource();
         parser.load(dataSource);
         return parser;
-
     }
 
     private void findViews() {
@@ -223,9 +226,12 @@ public class DanmaKuTestActivity extends SimpleBarActivity {
 
         mDanmakuView = (IDanmakuView) findViewById(R.id.sv_danmaku);
         mContext = DanmakuContext.create();
-        mContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_STROKEN, 3).setDuplicateMergingEnabled(false).setScrollSpeedFactor(1.2f).setScaleTextSize(1.2f)
+        mContext.setDanmakuStyle(IDisplayer.DANMAKU_STYLE_STROKEN, 3)
+                .setDuplicateMergingEnabled(false)
+                .setScrollSpeedFactor(1.2f)
+                .setScaleTextSize(1.2f)
                 .setCacheStuffer(new SpannedCacheStuffer(), mCacheStufferAdapter) // 图文混排使用SpannedCacheStuffer
-//        .setCacheStuffer(new BackgroundCacheStuffer())  // 绘制背景使用BackgroundCacheStuffer
+//                .setCacheStuffer(new BackgroundCacheStuffer())  // 绘制背景使用BackgroundCacheStuffer
                 .setMaximumLines(maxLinesPair)
                 .preventOverlapping(overlappingEnablePair);
         if (mDanmakuView != null) {
@@ -287,7 +293,7 @@ public class DanmaKuTestActivity extends SimpleBarActivity {
                     mediaPlayer.start();
                 }
             });
-            mVideoView.setVideoPath(Environment.getExternalStorageDirectory() + "/1.flv");
+            mVideoView.setVideoPath(getFilesDir() + "/test.mp4");
         }
 
     }
@@ -312,7 +318,6 @@ public class DanmaKuTestActivity extends SimpleBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (mDanmakuView != null) {
-            // dont forget release!
             mDanmakuView.release();
             mDanmakuView = null;
         }
@@ -322,7 +327,6 @@ public class DanmaKuTestActivity extends SimpleBarActivity {
     public void onBackPressed() {
         super.onBackPressed();
         if (mDanmakuView != null) {
-            // dont forget release!
             mDanmakuView.release();
             mDanmakuView = null;
         }
@@ -330,15 +334,14 @@ public class DanmaKuTestActivity extends SimpleBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//                getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public void onClick(View v) {
-        if (v == mMediaController) {
-            mMediaController.setVisibility(View.GONE);
-        }
+//        if (v == mMediaController) {
+//            mMediaController.setVisibility(View.GONE);
+//        }
         if (mDanmakuView == null || !mDanmakuView.isPrepared())
             return;
         if (v == mBtnRotate) {

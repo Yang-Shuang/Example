@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
+import com.yang.base.activity.SimpleBarActivity;
 import com.yang.example.view.HMListPagerView;
 import com.yang.example.view.HMListPagerView.PageHolder;
 

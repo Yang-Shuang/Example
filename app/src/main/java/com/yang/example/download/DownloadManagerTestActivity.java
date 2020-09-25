@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
+import com.yang.base.activity.SimpleBarActivity;
 import com.yang.example.utils.NetWorkUtils;
 
 import java.io.File;

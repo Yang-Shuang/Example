@@ -5,14 +5,12 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.yang.example.R;
-import com.yang.example.activity.SimpleBarActivity;
+import com.yang.base.activity.SimpleBarActivity;
 import com.yang.example.bean.LogDataBean;
-import com.yang.example.rx.SimpleTask;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.rx.SimpleTask;
+import com.yang.base.utils.LogUtil;
 import com.yang.example.utils.SQLiteTestHelper;
 import com.yang.example.view.NoteView;
-
-import rx.Subscriber;
 
 import static com.yang.example.view.NoteView.LIGHT_LEVEL;
 

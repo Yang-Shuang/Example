@@ -128,6 +128,7 @@ public class BiliDanmukuParser extends BaseDanmakuParser {
                         item.textSize = textSize * (mDispDensity - 0.6f);
                         item.textColor = color;
                         item.textShadowColor = color <= Color.BLACK ? Color.WHITE : Color.BLACK;
+                        item.flags = mContext.mGlobalFlagValues;
                     }
                 }
             }

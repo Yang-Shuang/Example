@@ -20,7 +20,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yang.example.R;
-import com.yang.example.utils.LogUtil;
+import com.yang.base.utils.LogUtil;
 
 public class PullToRefreshView extends LinearLayout {
     protected final String TAG = getClass().getSimpleName();

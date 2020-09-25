@@ -6,6 +6,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.yang.base.utils.LogUtil;
 import com.yang.example.R;
 
 public class BottomViewBehavior extends CoordinatorLayout.Behavior<View> {
