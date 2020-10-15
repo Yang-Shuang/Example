@@ -17,7 +17,7 @@ import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class OkHttpDemoActivity extends SimpleBarActivity {
+public class HttpDemoActivity extends SimpleBarActivity {
 
 
     private static boolean runThread = true;

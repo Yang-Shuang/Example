@@ -41,8 +41,8 @@
             android:name=".ConstraintActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OkHttpDemoActivity"
-            android:label="OkHttp Demo"
+            android:name=".HttpDemoActivity"
+            android:label="Http 请求模拟"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ViewGroupTestActivity"

@@ -25,7 +25,7 @@ import java.util.Arrays;
 public class MainActivity extends SimpleBarActivity {
 
     private String[] activityNames = {"自定义View事件", "进程间通信数据查看", "AIDL跨进程通信", "OkHttp Demo", "ViewGroupTest"};
-    private Class[] activityClasses = {CustomViewActivity.class, DataActivity.class, AIDLDataActivity.class, OkHttpDemoActivity.class, ViewGroupTestActivity.class};
+    private Class[] activityClasses = {CustomViewActivity.class, DataActivity.class, AIDLDataActivity.class, HttpDemoActivity.class, ViewGroupTestActivity.class};
 
     private RecyclerView recyclerView;
 

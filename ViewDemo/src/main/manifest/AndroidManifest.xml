@@ -29,7 +29,7 @@
             android:name=".ConstraintActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OkHttpDemoActivity"
+            android:name=".HttpDemoActivity"
             android:label="OkHttp Demo"
             android:screenOrientation="portrait" />
         <activity

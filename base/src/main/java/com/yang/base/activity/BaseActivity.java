@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
@@ -28,13 +29,24 @@ import rx.schedulers.Schedulers;
 
 public abstract class BaseActivity extends FragmentActivity {
 
-
     private Toast mToast;
     private View loadingView;
     private BaseSubscriber subscriber;
     private HashMap<String, Method> methods;
     public static final int RESULT_SUCCEED = 0;
     public static final int RESULT_FAILD = -1;
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        ButterKnife.bind(this);
+    }
 
     /**
      * 返回显示当前面页面元素的根视图， 用来添加loading视图 和  请求错误视图， 以及其他一些通用的视图

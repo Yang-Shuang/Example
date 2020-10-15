@@ -37,6 +37,10 @@ android {
             path "CMakeLists.txt"
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
@@ -69,4 +73,7 @@ dependencies {
         implementation project(path: ':ViewDemo')
     if (!VIEW_IS_LIB)
         implementation project(path: ':base')
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }
