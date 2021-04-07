@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.other.FileCopyTestActivity">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/from_file_path_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="源文件路径"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray1" />
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/to_file_path_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/is_self_copy_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="默认拷贝到当前文件路径"
+        android:textColor="@color/black" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/copy_count_edt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:hint="拷贝次数"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray1" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/copy_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="COPY" />
+
+</LinearLayout>

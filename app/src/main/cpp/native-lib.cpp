@@ -14,9 +14,9 @@ extern "C" JNIEXPORT void JNICALL Java_com_yang_example_utils_JNIRender_render(
         jdouble r, jdouble len, jdouble weight,
         jdouble x0,
         jdouble y0) {
-    jint *b3 = env->GetIntArrayElements(b1, false);
+    jint *b3 = env->GetIntArrayElements(b1, JNI_FALSE);
     jint size = env->GetArrayLength(b1);
-    jint *b4 = env->GetIntArrayElements(b2, false);
+    jint *b4 = env->GetIntArrayElements(b2, JNI_FALSE);
     int offset;
     int i = 0;
     int length = width * height;
