@@ -40,6 +40,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.androidApi.FontSizeTestActivity"
+            android:label="字体大小"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.other.FileCopyTestActivity"
             android:label="文件拷贝"
             android:launchMode="singleTop"
