@@ -40,15 +40,28 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.androidApi.AllApplicationsInfoActivity"
+            android:label="所有应用"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".activity.androidApi.FontSizeTestActivity"
             android:label="字体大小"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.other.FileCopyTestActivity"
             android:label="文件拷贝"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.other.CommunicationTestActivity"
+            android:label="内容互传"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".activity.other.OKHttpDemoActivity"
             android:label="OkHttp 探索"
