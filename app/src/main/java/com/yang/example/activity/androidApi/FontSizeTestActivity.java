@@ -23,6 +23,8 @@ public class FontSizeTestActivity extends SimpleBarActivity {
         setContentView(R.layout.activity_font_size_test);
 
         noteview = findViewById(R.id.noteview);
+
+
     }
 
 

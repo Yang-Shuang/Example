@@ -1,8 +1,12 @@
 package com.yang.example.activity.data;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
+import com.yang.base.utils.LogUtil;
 import com.yang.example.R;
 import com.yang.base.activity.SimpleBarActivity;
 
@@ -20,21 +24,33 @@ public class AesEncryptTestActivity extends SimpleBarActivity {
 
     private static final String AES_MODE = "AES/ECB/PKCS5Padding";
 
+    private EditText input_edt;
+    private TextView result_tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aes_encrypt_test);
+
+        input_edt = findViewById(R.id.input_edt);
+        result_tv = findViewById(R.id.result_tv);
+    }
+
+    public void onButtonClick(View view) {
+        String text = input_edt.getText().toString();
+        LogUtil.i(TAG, text);
+
+        result_tv.setText(text);
     }
 
     /**
      * 生成秘钥
      * 传入字符串如果小于16位 ，则以0在末尾补齐
      * 传入字符串如果大于16位，则从0截取16位
-     * @author zhuyuxin
      *
      * @param key
-     * @return
-     * createTime : 2017年11月7日 下午3:56:32
+     * @return createTime : 2017年11月7日 下午3:56:32
+     * @author zhuyuxin
      */
     private static SecretKeySpec createKey(String key) {
         //方式1：
@@ -74,18 +90,17 @@ public class AesEncryptTestActivity extends SimpleBarActivity {
 
     /**
      * 加密
-     * @author zhuyuxin
      *
      * @param content 待加密内容
-     * @param key 密钥
+     * @param key     密钥
      * @return
      * @throws NoSuchAlgorithmException
      * @throws NoSuchPaddingException
      * @throws InvalidKeyException
      * @throws IllegalBlockSizeException
      * @throws BadPaddingException
-     * @throws UnsupportedEncodingException
-     * createTime : 2016年9月27日 下午9:14:51
+     * @throws UnsupportedEncodingException createTime : 2016年9月27日 下午9:14:51
+     * @author zhuyuxin
      */
     private static byte[] aes_encrypt(String content, String key)
             throws NoSuchAlgorithmException, NoSuchPaddingException,
@@ -102,17 +117,16 @@ public class AesEncryptTestActivity extends SimpleBarActivity {
 
     /**
      * 解密
-     * @author zhuyuxin
      *
      * @param content 待解密内容
-     * @param key 解密密码
+     * @param key     解密密码
      * @return
      * @throws NoSuchAlgorithmException
      * @throws NoSuchPaddingException
      * @throws InvalidKeyException
      * @throws IllegalBlockSizeException
-     * @throws BadPaddingException
-     * createTime : 2016年9月27日 下午9:14:18
+     * @throws BadPaddingException       createTime : 2016年9月27日 下午9:14:18
+     * @author zhuyuxin
      */
     private static byte[] aes_decrypt(byte[] content, String key)
             throws NoSuchAlgorithmException, NoSuchPaddingException,

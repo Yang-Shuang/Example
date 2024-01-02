@@ -15,4 +15,16 @@
     <declare-styleable name="BaseNestScrollView">
         <attr name="layout_head" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CardImageView">
+        <attr name="cardBackgroundColor" format="color" />
+        <attr name="cardCornerRadius" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="RoundedImageView">
+        <attr name="cardRadius" format="dimension" />
+        <attr name="leftTopRadius" format="dimension" />
+        <attr name="rightTopRadius" format="dimension" />
+        <attr name="leftBottomRadius" format="dimension" />
+        <attr name="rightBottomRadius" format="dimension" />
+    </declare-styleable>
 </resources>

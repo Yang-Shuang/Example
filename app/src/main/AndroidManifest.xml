@@ -40,11 +40,58 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.other.TencentPagTestActivity"
+            android:exported="false"
+            android:label="腾讯 pag 动画测试"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.other.SvgaTestActivity"
+            android:exported="false"
+            android:label="SVGA 动画测试"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.other.RainTestActivity"
+            android:exported="false"
+            android:label="红包雨测试"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.other.GlideTestActivity"
+            android:exported="false"
+            android:label="Glide 测试"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.androidApi.CardImageTestActivity"
+            android:exported="false"
+            android:label="仿 CardView 的圆角ImageView"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.androidApi.VideoPagerActivity"
+            android:exported="false"
+            android:label="视频 RecyclerView"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.androidApi.LayoutManagerTestActivity"
+            android:exported="false"
+            android:label="RecyclerView LayoutManager"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.androidApi.ImageZoomTestActivity"
+            android:label="图片缩放"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.androidApi.AllApplicationsInfoActivity"
             android:label="所有应用"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.androidApi.FontSizeTestActivity"
             android:label="字体大小"
@@ -171,6 +218,11 @@
         <activity
             android:name=".activity.other.DanmaKuTestActivity"
             android:label="弹幕测试"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.androidApi.StatusBarTestActivity"
+            android:label="状态栏测试"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
     </application>

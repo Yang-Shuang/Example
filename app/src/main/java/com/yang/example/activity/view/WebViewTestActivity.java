@@ -1,7 +1,9 @@
 package com.yang.example.activity.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -24,7 +26,8 @@ public class WebViewTestActivity extends SimpleBarActivity {
 
     private static final String TAG = "WebView";
 
-    private static final String huimaiUrl = "https://m.ugoshop.com/channels/mobile/?oauth_nonce=87443&oauth_signature_method=SHA&oauth_version=1.0&oauth_timestamp=1562655237700&deviceType=android7.1.2&appVersion=5.1.17&channelName=UGO&uid=&device_id=MWVkYTdhZGYyNWJjZGFjZGU1YzcyMzQwNWU5MTA1NGY%3D&accessToken=&screenResolution=1080*1794&getui_clientid=1eda7adf25bcdacde5c723405e91054f&bdUserId=775301176490045044&bdChannelId=4197927873572975352&id=5907&oauth_signature=76cb3f54559d939ab906f43723d33b68b1392481366afc4efd8730b289589577";
+    private static final String huimaiUrl = "https://m.ugoshop.com";
+//    private static final String huimaiUrl = "http://open.thunderurl.com/test/edit.html";
 
     private WebView mWebView;
     private View back, next, refresh, go, web_change_btn;
@@ -72,12 +75,17 @@ public class WebViewTestActivity extends SimpleBarActivity {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 super.onProgressChanged(view, newProgress);
+                LogUtil.e("onProgressChanged---" + newProgress);
+                if (newProgress > 0 && newProgress != 100) {
+                    bar.setVisibility(View.VISIBLE);
+                }
                 bar.setProgress(newProgress);
             }
 
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
+                LogUtil.e("onReceivedTitle---" + title);
                 setTitleStr("" + title);
             }
         });
@@ -85,13 +93,22 @@ public class WebViewTestActivity extends SimpleBarActivity {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                time = System.currentTimeMillis();
+                LogUtil.e("shouldOverrideUrlLoading---" + url);
+                if (url.startsWith("xunlei")) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    Uri content_url = Uri.parse(url);
+                    intent.setData(content_url);
+                    startActivity(intent);
+                    return true;
+                }
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                bar.setVisibility(View.VISIBLE);
                 LogUtil.e("onPageStarted---" + (System.currentTimeMillis() - time));
             }
 

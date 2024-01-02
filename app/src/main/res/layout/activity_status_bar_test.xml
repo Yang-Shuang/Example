@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.androidApi.StatusBarTestActivity">
+
+    <TextView
+        android:text="1111111111"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:background="@color/yellow"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <TextView
+        android:text="222222222"
+        android:layout_marginTop="110dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:background="@color/red"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <TextView
+        android:text="3333333333"
+        android:layout_marginTop="220dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:background="@color/green"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <Button
+        android:onClick="onShowClick"
+        android:layout_gravity="bottom"
+        android:layout_margin="25dp"
+        android:text="Show/Hide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</FrameLayout>

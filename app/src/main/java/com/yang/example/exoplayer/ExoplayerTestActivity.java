@@ -61,7 +61,9 @@ public class ExoplayerTestActivity extends SimpleBarActivity implements ExoPlaye
     //    private String videoUrl = "http://mvideo.ugoshop.com/microvideo/629642/video.m3u8";
 //    private String videoUrl = "http://10.9.123.55:8080/demo/video.m3u8";
 //    private String videoUrl = "http://10.9.123.55:8080/demo/video1.m3u8";
-    private String videoUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+//    private String videoUrl = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+    private String videoUrl = "https://cdn-01.wangaokai.com/media/preview-new/54e/54e14ca72abe35e0-41699/index.m3u8?_v=20190806&sign=1629707195-7291d360aacf34dea5590b4dfa9a4410-0-12569ca504f00ce0b6f209a98d79da2a";
+    // https://cdn-01.wangaokai.com/media/preview-new/54e/54e14ca72abe35e0-41699/index.m3u8?_v=20190806&sign=1629707195-7291d360aacf34dea5590b4dfa9a4410-0-12569ca504f00ce0b6f209a98d79da2a
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

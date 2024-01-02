@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.yang.example.view.card.CardImageView
+        android:id="@+id/card_image1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_800x800"
+        app:cardCornerRadius="20dp" />
+
+
+    <com.yang.example.view.RoundedImageView
+        android:id="@+id/card_image2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_800x800"
+        app:cardRadius="20dp" />
+
+</LinearLayout>
